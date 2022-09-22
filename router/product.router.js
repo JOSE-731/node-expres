@@ -30,4 +30,14 @@ router.get('/', (req, res) => {
 })
 
 
+//Ruta post
+router.post('/', (req, res)=>{
+    const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
+    res.json({
+        message: 'created', //Le imprimimos un mensaje
+        data: body//retornamos la data
+    })
+})
+
+
 module.exports = router; //Importamos el modulo router

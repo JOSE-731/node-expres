@@ -4,6 +4,7 @@ const faker = require('faker');//Exportamos faker
 const app = express();//Creamos una aplicacion de express
 const port = 3000; //Definimos el puerto donde corre la aplicacion
 
+app.use(express.json());//Agregamos middleware para obtener lo que se envia en post
 app.get('/', (req, res) => { //Ruta
     res.send('Hola mundo');
 })
