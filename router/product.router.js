@@ -39,5 +39,26 @@ router.post('/', (req, res)=>{
     })
 })
 
+//Ruta patch (es lo mismo que la put)
+router.patch('/:id', (req, res)=>{
+    const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
+    const { id } = req.params; //Obtenemos solo el id
+    res.json({
+        message: 'upate', //Le imprimimos un mensaje
+        id,
+        body
+    })
+})
+
+//Ruta delete
+router.delete('/:id', (req, res)=>{
+    const { id } = req.params; //Obtenemos solo el id
+    res.json({
+        message: 'deleted', //Le imprimimos un mensaje
+        id,
+    })
+})
+
+
 
 module.exports = router; //Importamos el modulo router
