@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 //Ruta post
 router.post('/', (req, res)=>{
     const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
-    res.json({
+    res.status(201).json({
         message: 'created', //Le imprimimos un mensaje
         data: body//retornamos la data
     })
@@ -43,11 +43,20 @@ router.post('/', (req, res)=>{
 router.patch('/:id', (req, res)=>{
     const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
     const { id } = req.params; //Obtenemos solo el id
-    res.json({
-        message: 'upate', //Le imprimimos un mensaje
-        id,
-        body
-    })
+
+    if(id === '999'){
+        res.status(404).json({
+            message: 'upate', //Le imprimimos un mensaje
+            id,
+            body
+        })
+    }else{
+        res.status(201).json({
+            message: 'upate', //Le imprimimos un mensaje
+            id,
+            body
+        })
+    }
 })
 
 //Ruta delete
