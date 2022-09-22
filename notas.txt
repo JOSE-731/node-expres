@@ -1,3 +1,30 @@
 Para instalar dependencia de buenas practicas:npm i nodemon eslint eslint-config-prettier eslint-plugin-prettier prettier -D
 
 Instalamos express: npm i express, ya con esto express queda instalado y podemos crear nuestro servidor
+
+API Restful.
+REST: Representational State Transfer
+Es una convención que comúnmente se utiliza para desarrollar servicios web, que al final se comunican por el 
+protocolo HTTP.
+
+Este protocolo tiene varios métodos:
+
+El método GET
+PUT
+PUSH (Son hermanitos)
+POST
+DELETE.
+
+La convención de REST nos dice que por cada casi entidad que tengamos tendremos una ruta, 
+un endpoint con un nombre, y también deberíamos tener un id por cada producto.
+
+Si queremos obtener la lista de productos usaremos el método GET con la ruta de productos.
+Sí queremos una ruta en particular repetimos el endpoint, pero esta vez enviamos el id.
+
+PUT, podríamos usar Replace y modificar una lista entera (mala práctica), lo ideal es usarlo con un solo producto
+PATCH, podemos hacer una actualización mucho más detalladas, de que cosas quiero modificar.
+POST, nos sirve para crear.
+DELETE, no deberíamos eliminar en masa, es muy peligroso, ideal es eliminar uno a uno
+
+Los endpoints son las URLs de un API o un backend que responden a una petición. Los mismos entrypoints 
+tienen que calzar con un endpoint para existir. Algo debe responder para que se renderice un sitio con sentido para el visitante.
