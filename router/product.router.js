@@ -16,38 +16,50 @@ router.get('/:id', (req, res) => {
 })
 
 //Para crear data falsa utilizamos npm i faker
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     //const { size } = req.query; //Se usa query para tomar parametros opcionales
-   const product = services.find();
-   res.json(product);
+    const product = await services.find();
+    res.json(product);
 })
 
 
 //Ruta post
-router.post('/', (req, res)=>{
-    const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
-    const newProduct = services.create(body);
-    res.status(201).json({
-        message: 'created', //Le imprimimos un mensaje
-        data: body//retornamos la data
-    })
+router.post('/', async (req, res) => {
+    try {
+        const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
+        const newProduct = await services.create(body);
+        res.status(201).json({
+            message: 'created', //Le imprimimos un mensaje
+            data: body//retornamos la data
+        })
+    } catch (error) {
+        res.status(404).json({
+            message: 'error', //Le imprimimos un mensaje
+        })
+    }
 })
 
 //Ruta patch (es lo mismo que la put)
-router.patch('/:id', (req, res)=>{
+router.patch('/:id', async (req, res) => {
     const { id } = req.params; //Obtenemos solo el id
-    const product = service.findOne(id);
+    const product = await service.findOne(id);
     res.json(product);
 })
 
 //Ruta delete
-router.delete('/:id', (req, res)=>{
-    const { id } = req.params; //Obtenemos solo el id
-    const rta =  services.delete(id);
-    res.json({
-        message: 'deleted', //Le imprimimos un mensaje
-        rta
-    })
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params; //Obtenemos solo el id
+        const rta = await services.delete(id);
+        res.json({
+            message: 'deleted', //Le imprimimos un mensaje
+            rta
+        })
+    } catch (error) {
+        res.status(404).json({
+            message: 'error', //Le imprimimos un mensaje
+        })
+    }
 })
 
 
