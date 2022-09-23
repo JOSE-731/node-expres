@@ -1,7 +1,8 @@
 const express = require('express');//Exportamos express
-const faker = require('faker');//Exportamos faker
+const ProductsServices = require('./../services/product.services');
 
 const router = express.Router();
+const services = new ProductsServices();//Instanciamos la clase
 
 router.get('/:id', (req, res) => {
     const { id } = req.params; //Obtenemos solo el id
@@ -16,17 +17,9 @@ router.get('/:id', (req, res) => {
 
 //Para crear data falsa utilizamos npm i faker
 router.get('/', (req, res) => {
-    const { size } = req.query; //Se usa query para tomar parametros opcionales
-    const limit = size || 10; //Si se le envia el parametro mostrará la cantida de registro que se le pase, de lo contrario mostrará 10
-    const productos = [];
-    for(let i = 0; i < limit; i++){
-        productos.push({
-            name: faker.commerce.productName(),
-            price: parseInt(faker.commerce.price(), 10),
-            image: faker.image.imageUrl()
-        })
-    }
-    res.json(productos);
+    //const { size } = req.query; //Se usa query para tomar parametros opcionales
+   const product = services.find();
+   res.json(product);
 })
 
 
@@ -41,22 +34,9 @@ router.post('/', (req, res)=>{
 
 //Ruta patch (es lo mismo que la put)
 router.patch('/:id', (req, res)=>{
-    const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
     const { id } = req.params; //Obtenemos solo el id
-
-    if(id === '999'){
-        res.status(404).json({
-            message: 'upate', //Le imprimimos un mensaje
-            id,
-            body
-        })
-    }else{
-        res.status(201).json({
-            message: 'upate', //Le imprimimos un mensaje
-            id,
-            body
-        })
-    }
+    const product = service.findOne(id);
+    res.json(product);
 })
 
 //Ruta delete
