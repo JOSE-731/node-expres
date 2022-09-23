@@ -26,6 +26,7 @@ router.get('/', (req, res) => {
 //Ruta post
 router.post('/', (req, res)=>{
     const body = req.body; //Obtenemos todo la respuesta de lo que se envia por post
+    const newProduct = services.create(body);
     res.status(201).json({
         message: 'created', //Le imprimimos un mensaje
         data: body//retornamos la data
@@ -42,9 +43,10 @@ router.patch('/:id', (req, res)=>{
 //Ruta delete
 router.delete('/:id', (req, res)=>{
     const { id } = req.params; //Obtenemos solo el id
+    const rta =  services.delete(id);
     res.json({
         message: 'deleted', //Le imprimimos un mensaje
-        id,
+        rta
     })
 })
 
