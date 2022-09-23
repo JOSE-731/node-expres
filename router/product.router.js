@@ -4,7 +4,7 @@ const ProductsServices = require('./../services/product.services');
 const router = express.Router();
 const services = new ProductsServices();//Instanciamos la clase
 
-router.get('/:id', (req, res) => {
+/*router.get('/:id', (req, res) => {
     const { id } = req.params; //Obtenemos solo el id
     res.json(
         {
@@ -13,14 +13,25 @@ router.get('/:id', (req, res) => {
             price: 5.000
         }
     )
-})
+})*/
 
 //Para crear data falsa utilizamos npm i faker
-router.get('/', async (req, res) => {
+/*router.get('/', async (req, res) => {
     //const { size } = req.query; //Se usa query para tomar parametros opcionales
     const product = await services.find();
     res.json(product);
-})
+})*/
+
+// Encontrar un producto por su id:
+router.get('/:id', async (req, res, next) => { //se agrega el next
+    try {
+      const { id } = req.params;
+      const product = await services.findOne(id);
+      res.json(product);
+    } catch (error) {
+      next(error); //se agrega el next para atrapar de forma explicita el error con el middleware
+    }
+  });
 
 
 //Ruta post

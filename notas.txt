@@ -58,3 +58,6 @@ Servicios: donde se encuentra la lógica de negocio
 Los servicios usan las librerías.
 Las librerías se encargan de contactarse a la capa de entidades
 Las librerías se contactan a otras fuentes de datos: API externa o base de datos.
+
+Un middleware es un bloque de código que se ejecuta entre la petición que hace el usuario (request) 
+hasta que la petición llega al servidor. Este funciona de forma secuencial

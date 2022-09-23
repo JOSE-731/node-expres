@@ -33,6 +33,7 @@ class ProductsServices{
     }
 
     async findOne(id){
+        const tete = this.getAño();
         return this.products.find(item => item.id === id);
     }
 
