@@ -1,5 +1,6 @@
 //Servicios: va toda la logica del desarrollo, sale de la arquitectura THE CLEAN ARCHITECTURE
 const faker = require('faker');//Exportamos faker
+const boom = require('@hapi/boom');//Exportamos boom, lo instalamos con  npm i @hapi/boom
 class ProductsServices{
 
     constructor(){
@@ -40,7 +41,7 @@ class ProductsServices{
     async update(id, changes){
         const index  = this.products.findIndex(item => item.id === id);//Retorna el index del elemento cuyo id se esta mandando
         if(index === -1){
-            throw new Error('Producto no encontrado')
+            throw boom.notFound("Producto no encontrado");
         }
 
         this.products[index] = changes;//Modifica el objeto
@@ -50,7 +51,7 @@ class ProductsServices{
     async delete(id ){
         const index  = this.products.findIndex(item => item.id === id);//Retorna el index del elemento cuyo id se esta mandando
         if(index === -1){
-            throw new Error('Producto no encontrado')
+            throw boom.notFound("Producto no encontrado");
         }
 
         this.products.splice(index, 1);

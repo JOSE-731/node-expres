@@ -14,4 +14,11 @@ function logErrors(err, req, res, next) {
     })
   }
   
-  module.exports = { logErrors, errorHandler }; //exportar
+  function boomErrorHandler(err, req, res, next){
+    if(err.isBoom){//Verifica si el error es de tipo boom
+      const {output} = err; //Leemos el output del error
+      res.status(output.statusCode).json(output.payload);//Termina la ejecucion pasandole un status de boom
+    }
+    next(err);//Si no es de tipo boom que ejecute otro middleware
+  }
+  module.exports = { logErrors, errorHandler, boomErrorHandler }; //exportar

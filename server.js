@@ -5,7 +5,7 @@ const app = express();//Creamos una aplicacion de express
 const port = 3000; //Definimos el puerto donde corre la aplicacion
 
 // Importar middleware
-const { logErrors, errorHandler } = require('./middlewares/error.handler'); //importar las funciones que se uilizarán
+const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler'); //importar las funciones que se uilizarán
 
 app.use(express.json());//Agregamos middleware para obtener lo que se envia en post
 app.get('/', (req, res) => { //Ruta
@@ -16,6 +16,7 @@ app.get('/', (req, res) => { //Ruta
 routers(app);//Importamos y pasamos por parametros el app
 
 //Utilizamos los middleware. Siempre deben ir después del routing:
+app.use(boomErrorHandler);
 app.use(logErrors);
 app.use(errorHandler);
 
