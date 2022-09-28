@@ -1,18 +1,15 @@
 const express = require('express');//Exportamos express
+const UserServices = require('../services/user.services');
+
 const router = express.Router();
+const service = new UserServices;
 
-router.get('/', (req, res) => {
-    const { limit, offset } = req.query; //Se usa query para tomar parametros opcionales
-
-    if (limit && offset) {
-        res.json(
-            {
-                limit,
-                offset
-            }
-        )
-    } else {
-        res.send("No hay data")
+router.get('/',  async (req, res) => {
+    try {
+       const users = await service.find();
+       res.json(users);
+    } catch (error) {
+        console.log(error)
     }
 })
 

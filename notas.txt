@@ -69,3 +69,5 @@ docker-compose exec postgres bash:Nos conectamos a nuestra imagen o contenedor p
 psql -h localhost -d my_store -U admin: Para entrar a la base de datos
 \d+:Muestra la estructura de la DB
 \q:Salir de la DB
+wsl --shutdown: Para apagar servicios de Docker
+pool: Un pool de conexiones es un conjunto limitado de conexiones a una base de datos, que es manejado por un servidor de aplicaciones de forma tal, que dichas conexiones pueden ser reutilizadas por los diferentes usuarios.
