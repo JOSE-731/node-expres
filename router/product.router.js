@@ -15,6 +15,16 @@ const services = new ProductsServices();//Instanciamos la clase
     )
 })*/
 
+//Todos los productos
+router.get('/', async (req, res, next) => { //se agrega el next
+    try {
+      const product = await services.find();
+      res.json(product);
+    } catch (error) {
+      next(error); //se agrega el next para atrapar de forma explicita el error con el middleware
+    }
+  });
+
 //Para crear data falsa utilizamos npm i faker
 /*router.get('/', async (req, res) => {
     //const { size } = req.query; //Se usa query para tomar parametros opcionales

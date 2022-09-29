@@ -1,11 +1,14 @@
 //Servicios: va toda la logica del desarrollo, sale de la arquitectura THE CLEAN ARCHITECTURE
 const faker = require('faker');//Exportamos faker
 const boom = require('@hapi/boom');//Exportamos boom, lo instalamos con  npm i @hapi/boom
+const pool = require('../libs/postgress');
 class ProductsServices{
 
     constructor(){
         this.products = [];
         this.generate();//Cada que se instancie se generarán 100 productos
+        this.pool = pool;
+        this.pool.on('error', (err) => console.log(error));//Escuchar si hay algun error en la conexion
     }
 
     generate(){
@@ -30,7 +33,9 @@ class ProductsServices{
     }
 
     async find(){
-        return this.products;
+        const query =  'SELECT * FROM task';
+        const rta = await this.pool.query(query);
+        return rta.rows;
     }
 
     async findOne(id){
