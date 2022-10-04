@@ -2,6 +2,7 @@
 const faker = require('faker');//Exportamos faker
 const boom = require('@hapi/boom');//Exportamos boom, lo instalamos con  npm i @hapi/boom
 const pool = require('../libs/postgress');
+const sequelize = require('../libs/sequelize');//Importamos el modulo del orm
 class ProductsServices{
 
     constructor(){
@@ -34,8 +35,11 @@ class ProductsServices{
 
     async find(){
         const query =  'SELECT * FROM task';
-        const rta = await this.pool.query(query);
-        return rta.rows;
+        const [data, metada] = await sequelize.query(query);//Data, retorna la informacion consultada, metada devuelve informacion de la tabla, sentencias etc
+        return {
+            data
+          //  metada
+        };
     }
 
     async findOne(id){

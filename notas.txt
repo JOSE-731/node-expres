@@ -72,3 +72,19 @@ psql -h localhost -d my_store -U admin: Para entrar a la base de datos
 wsl --shutdown: Para apagar servicios de Docker
 pool: Un pool de conexiones es un conjunto limitado de conexiones a una base de datos, que es manejado por un servidor de aplicaciones de forma tal, que dichas conexiones pueden ser reutilizadas por los diferentes usuarios.
 Otra definicion de pool seria: Tener varias conexiones reutilizando una sola
+
+Orm: Modelo de programacion que nos permite mapear las estructuras de la base de datos, este
+nos permitirá acelerar el desarrollo de la aplicación evitando la escritura repetitiva de código para ejecutar operaciones CRUD.
+
+Sequelize : Orm de node js que nos permitirá gestionar mejor nuestra base de datos que tengamos en nuestra aplicacion
+este se instala con: npm install --save sequelize
+
+importante dependiendo de la base de datos: este pedira la instalacion de unos driver :
+
+$ npm install --save pg pg-hstore # Postgres
+$ npm install --save mysql2
+$ npm install --save mariadb
+$ npm install --save sqlite3
+$ npm install --save tedious # Microsoft SQL Server
+$ npm install --save oracledb # Oracle Database
+
