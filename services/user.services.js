@@ -1,5 +1,6 @@
 const getConnection = require('../libs/postgress');
 const pool = require('../libs/postgress');
+const {models} = require('../libs/sequelize'); //Exportamos los modelos
 
 class UserServices {
 
@@ -9,9 +10,8 @@ class UserServices {
     }
 
     async find() {
-        const query =  'SELECT * FROM task';
-        const rta = await this.pool.query(query);
-        return rta.rows
+        const rta = await models.User.findAll();//Optenemos todos los registros
+        return rta;
     }
 }
 
