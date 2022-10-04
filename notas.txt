@@ -88,3 +88,4 @@ $ npm install --save sqlite3
 $ npm install --save tedious # Microsoft SQL Server
 $ npm install --save oracledb # Oracle Database
 
+Migraciones: Es como un sistema de control de versiones para manejar los cambios desde el código y trackear los cambios en la base de datos. - Sequelize.
